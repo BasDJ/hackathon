@@ -1,18 +1,6 @@
 # Hackathon uitleg
 
-## Correlation png
-
-De diagonale rode lijn (van linksboven naar rechtsonder) is altijd 1.0 — elk doel is natuurlijk perfect gecorreleerd met zichzelf.
-
-De interessante informatie zit in de blokken naast de diagonaal: daar zie je welke doelen verband houden met elkaar.
-
-Bijvoorbeeld:
-
-Als FIS (Fisheries) en FP (Food Provision) dieprood zijn → regio’s met sterke visserij hebben ook hogere voedselvoorziening.
-
-Als CW (Clean Waters) en BD (Biodiversity) rood zijn → schone wateren ondersteunen biodiversiteit.
-
-Als FIS en BD blauw zijn → intensieve visserij schaadt biodiversiteit.
+## afkortingen
 
 | Afkorting       | Volledige naam (Engels)               | Betekenis (Nederlands)                                                                                     |
 | --------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -36,3 +24,18 @@ Als FIS en BD blauw zijn → intensieve visserij schaadt biodiversiteit.
 | **TR**          | Tourism & Recreation                  | Toerisme en recreatie – duurzaam gebruik van de zee voor ontspanning en toerisme                           |
 | **OHI_index**   | Ocean Health Index (Total)            | Totale oceaangezondheidsscore – samengesteld uit alle bovenstaande doelen                                  |
 | **trend_score** | Trend                                 | Trend in de tijd – of een regio verbetert of verslechtert in oceaangezondheid                              |
+
+## Correlation png
+
+De diagonale rode lijn (van linksboven naar rechtsonder) is altijd 1.0 — elk doel is natuurlijk perfect gecorreleerd met zichzelf.
+
+De interessante informatie zit in de blokken naast de diagonaal: daar zie je welke doelen verband houden met elkaar.
+
+Bijvoorbeeld:
+
+Als FIS (Fisheries) en FP (Food Provision) dieprood zijn → regio’s met sterke visserij hebben ook hogere voedselvoorziening.
+
+Als CW (Clean Waters) en BD (Biodiversity) rood zijn → schone wateren ondersteunen biodiversiteit.
+
+Als FIS en BD blauw zijn → intensieve visserij schaadt biodiversiteit.
+
