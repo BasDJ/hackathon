@@ -87,33 +87,42 @@ if not subset.empty:
     st.pyplot(fig)
 
 # --- MACHINE LEARNING ---
-st.header("🤖 Predicting OHI Index from Goals")
+st.header("🤖 Machine Learning: Predicting OHI Index")
 
-X = df[goal_columns]
-y = df["OHI_index"]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Automatically detect goal columns
+numeric_cols = df.select_dtypes(include='number').columns.tolist()
+excluded_cols = ['OBJECTID', 'rgn_id', 'are_km2', 'OHI_index', 'trend_score']
+goal_columns = [col for col in numeric_cols if col not in excluded_cols]
 
-model = LinearRegression()
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
+if len(goal_columns) < 5:
+    st.error("❌ Not enough goal columns found for training the model.")
+    st.write("Detected numeric columns:", numeric_cols)
+else:
+    X = df[goal_columns]
+    y = df["OHI_index"]
 
-r2 = r2_score(y_test, y_pred)
-mae = mean_absolute_error(y_test, y_pred)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-st.write(f"**R² score:** {r2:.3f}")
-st.write(f"**Mean Absolute Error:** {mae:.2f}")
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
 
-importance = pd.DataFrame({
-    "Goal": goal_columns,
-    "Coefficient": model.coef_
-}).sort_values(by="Coefficient", ascending=False)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
 
-st.subheader("Top contributing goals to OHI Index")
-st.dataframe(importance)
+    st.write(f"**R² score:** {r2:.3f}")
+    st.write(f"**Mean Absolute Error:** {mae:.2f}")
 
-fig, ax = plt.subplots(figsize=(10, 5))
-sns.barplot(data=importance, x="Coefficient", y="Goal", palette="viridis", ax=ax)
-ax.set_title("Contribution of Each Goal to Ocean Health Index")
-st.pyplot(fig)
+    importance = pd.DataFrame({
+        "Goal": goal_columns,
+        "Coefficient": model.coef_
+    }).sort_values(by="Coefficient", ascending=False)
 
-st.success("✅ All visualizations and analyses completed!")
+    st.subheader("Top contributing goals to OHI Index")
+    st.dataframe(importance)
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    sns.barplot(data=importance, x="Coefficient", y="Goal", palette="viridis", ax=ax)
+    ax.set_title("Contribution of Each Goal to Ocean Health Index")
+    st.pyplot(fig)
+
